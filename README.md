@@ -1,3 +1,2 @@
 # INVARA
-**Infinite variations**
-An expiremental electroart website from scratch
+An expiremental and kinda random electroart site.
