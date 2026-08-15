@@ -7,7 +7,7 @@ app.set("view engine", "ejs")
 app.use(express.static("public"))
 //testing first req or route
 app.get("/",(req, res)=>{
-    res.send("INVARA is alive.")
+    res.render("index")
 })
 app.listen(PORT, ()=>{
     console.log(`INVARA running at http://localhost:${PORT}`)

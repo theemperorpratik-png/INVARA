@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Bytesized&family=Pixelify+Sans:wght@400..700&family=Rubik+Spray+Paint&display=swap');
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    /* color: white; */
+}
+html,body {
+    width: 100%;
+    height: 100%;
+    background-image: url("/images/background.png");
+    background-position: center;
+    background-size: cover;
+}
+body {
+    /* background: black; */
+    /* color: white; */
+    font-family: Arial;
+    overflow: hidden;
+}
+.header {
+    opacity: 0.7;
+    font-family: monospace;
+    /* letter-spacing: 10px; */
+    /* padding: 10px; */
+    /* text-align: center; */
+    font-size: 45px;
+    margin-bottom: 30px;
+    margin-left: 25px;
+
+}
+.smth1 {
+    /* font-family: monospace; */
+    font-family: "Rubik Spray Paint", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    opacity: 0.8;
+    margin-left: 25px;
+}
+.smth2 {
+    font-family: "Pixelify Sans", monospace;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 70px;
+    letter-spacing: 10px;
+    opacity: 0.9;
+    margin-left: 25px;
+}
+.nd {
+    margin-left: 25px;
+    width: 400px;
+    font-family: "Bytesized", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    opacity: 0.6;
+}
+.rd {
+    margin-left: 25px;
+    margin-top: 180px;
+}
+#ebutt {
+    height: 60px;
+    width: 220px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    font-family: "Bytesized", sans-serif;
+    font-size: 15px;
+}
+#ebutt:hover {
+    
+    background-color: gray;
+    color: black;
+}
+.footer {
+    font-family: "Rubik Spray Paint", system-ui;
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 98%;
+    opacity: 0.1;
+    margin-left: 5px;
+
+}
+
