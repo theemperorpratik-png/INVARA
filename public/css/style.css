@@ -5,6 +5,64 @@
     box-sizing: border-box;
     /* color: white; */
 }
+/* animation */
+
+
+
+#ani {
+    /* this position is for it to not push the elements out and remain as overlay */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* invis for now */
+    opacity: 0;
+    /* this is so the overlay doesnt block the controls ie our pointer can poke through this layer*/
+    pointer-events: none;
+    z-index: 100;
+}
+
+#anitxt {
+    font-family: "Bytesized", sans-serif;
+    font-size: 48px;
+    letter-spacing: 8px;
+    color: white;
+    opacity: 0;
+}
+
+body.entering #ani {
+    animation: flicker 0.8s forwards;
+}
+
+body.entering #anitxt {
+    animation: textPop 0.8s forwards;
+}
+/* credit for animation keyframe: "Camera Flash CSS animation" by cstein on CodePen: https://codepen.io/cstein/pen/VaJPYQ */
+
+@keyframes flicker {
+    0%   { opacity: 0; background: white; }
+    10%  { opacity: 1; background: white; }
+    20%  { opacity: 0.2; background: rgb(0, 255, 242); }
+    30%  { opacity: 1; background: white; }
+    40%  { opacity: 0.1; background: rgb(196, 68, 255); }
+    55%  { opacity: 1; background: rgb(9, 17, 90); }
+    100% { opacity: 1; background: rgb(0, 0, 0); }
+}
+
+@keyframes textPop {
+    0%   { opacity: 0; }
+    54%  { opacity: 0; }
+    55%  { opacity: 1; }
+    100% { opacity: 1; }
+}
+
+
+/* wooofff took a long ass time just for this animation*/
 html,body {
     width: 100%;
     height: 100%;
@@ -16,6 +74,7 @@ body {
     /* background: black; */
     /* color: white; */
     font-family: Arial;
+    /* i put this cuz i hate random scroolbars */
     overflow: hidden;
 }
 .header {

@@ -5,9 +5,11 @@ const PORT = 3000
 app.set("view engine", "ejs")
 //this makes folder accesible to the browser
 app.use(express.static("public"))
-//testing first req or route
 app.get("/",(req, res)=>{
     res.render("index")
+})
+app.get("/domain", (req,res)=>{
+    res.render("domain")
 })
 app.listen(PORT, ()=>{
     console.log(`INVARA running at http://localhost:${PORT}`)
