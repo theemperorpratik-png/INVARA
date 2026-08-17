@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>_INVARA_CREATE</title>
+    <link rel="stylesheet" href="/css/create.css">
+</head>
+
+<body>
+    <div class="bimg"></div>
+    <div class="header">
+        <h1 class="logo">_INVARA</h1>
+        <button id="ebutt"><-&nbsp; DOMAIN</button>
+    </div>
+    <div class="hmm">ART GENERATOR</div>
+    <div class="main">
+        <div class="canvas">
+            <canvas id="canvas" width="900" height="600"></canvas>
+        </div>
+        <div class="controls">
+            <div class="sel">
+                <label for="sysSelect">SYSTEM: </label>
+                <select name="sysSelect" id="sysSelect">
+                    <option value="cosmic">COSMIC FEILD</option>
+                    <option value="fractal">FRACTAL GROWTH</option>
+                    <option value="particle">PARTICLE FLOW</option>
+                    <option value="geometry">GEOMETRIC GRID</option>
+                    <option value="gilitch">GILITCH MATRIX</option>
+                    <option value="wave">WAVE FEILD</option>
+                    <option value="orbit">ORBITAL SYSTEM</option>
+                    <option value="cellular">CELLULAR AUTOMATA</option>
+                    <option value="noise">NOISE TERRAIN</option>
+                    <option value="reaction">REACTION DIFFUSION</option>
+                    <option value="voronoi">VORONOI</option>
+                    <option value="flow">FLOW MAP</option>
+                    <option value="spiral">SPIRAL FIELD</option>
+                    <option value="tunnel">INFINITE TUNNEL</option>
+                    <option value="topography">TOPOGRAPHY</option>
+                    <option value="network">NETWORK</option>
+                    <option value="crystal">CRYSTAL GROWTH</option>
+                    <option value="lightning">LIGHTNING</option>
+                    <option value="hybrid">HYBRID</option>
+                </select>
+                <!-- just planning and writing bout these was way too boring it sucked -->
+            </div>
+            <div class="para">
+                <div class="title">
+                    <span>PARAMETERS FOR:</span>
+                    <span id="sysName">COSMIC FEILD</span>
+                </div>
+                <div id="parameters">
+                    <div class="pinfo">
+                        <div class="ugh">
+                            <label for="density">DENSITY</label>
+                            
+                        </div>
+                        <input type="range" id="density" min="1" max="100" value="50"><span class="dVal">50</span>
+
+                    </div>
+                    <div class="pinfo">
+                        <div class="ugh">
+                            <label for="complexity">COMPLEXITY</label>
+                           
+                        </div>
+                        <input type="range" id="complexity" min="1" max="100" value="50"><span class="cVal">50</span>
+
+                    </div>
+                    <div class="pinfo">
+                        <div class="ugh">
+                            <label for="scale">SCALE</label>
+                        </div>
+                        <input type="range" id="scale" min="1" max="100" value="50"><span class="sVal">50</span>
+
+                    </div>
+                    <div class="seed">
+                        <input type="text" name="seed" id="seed" value="001">
+                        <button id="rButt">↻</button>
+                    </div>
+                    <button id="genButt">GENERATE</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

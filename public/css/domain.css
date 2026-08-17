@@ -1,12 +1,112 @@
 @import url('https://fonts.googleapis.com/css2?family=Bytesized&family=Micro+5&family=Pixelify+Sans:wght@400..700&family=Rubik+Spray+Paint&family=Sekuya&display=swap');
+
 * {
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
     color: white;
-    
+
 }
-html,body {
+
+/* animation */
+
+
+
+#ani {
+    /* this position is for it to not push the elements out and remain as overlay */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* invis for now */
+    opacity: 0;
+    /* this is so the overlay doesnt block the controls ie our pointer can poke through this layer*/
+    pointer-events: none;
+    z-index: 100;
+}
+
+#anitxt {
+    font-family: "Bytesized", sans-serif;
+    font-size: 48px;
+    letter-spacing: 8px;
+    color: white;
+    opacity: 0;
+}
+
+body.entering #ani {
+    animation: flicker 0.5s forwards;
+}
+
+body.entering #anitxt {
+    animation: textPop 0.5s forwards;
+}
+
+/* credit for animation keyframe: "Camera Flash CSS animation" by cstein on CodePen: https://codepen.io/cstein/pen/VaJPYQ */
+
+@keyframes flicker {
+    0% {
+        opacity: 0;
+        background: white;
+    }
+
+    10% {
+        opacity: 1;
+        background: white;
+    }
+
+    20% {
+        opacity: 0.2;
+        background: rgb(27, 233, 226);
+    }
+
+    30% {
+        opacity: 1;
+        background: white;
+    }
+
+    40% {
+        opacity: 0.1;
+        background: rgb(165, 68, 255);
+    }
+
+    55% {
+        opacity: 1;
+        background: rgb(94, 41, 99);
+    }
+
+    100% {
+        opacity: 1;
+        background: rgb(0, 0, 0);
+    }
+}
+
+@keyframes textPop {
+    0% {
+        opacity: 0;
+    }
+
+    54% {
+        opacity: 0;
+    }
+
+    55% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+/* hehe*/
+html,
+body {
     width: 100%;
     height: 100%;
     background-color: black;
@@ -14,13 +114,15 @@ html,body {
     background-position: center;
     background-size: cover;
 }
+
 body {
     /* height: 100vh;
     width: 100vh; */
     font-family: Arial;
     /* overflow: hidden; */
-    
+
 }
+
 /* wanted the domain to have dark theme so did ts */
 .bimg {
     position: fixed;
@@ -31,13 +133,15 @@ body {
     opacity: 0.1;
     z-index: 10;
     pointer-events: none;
-    background-image: url("/images/background.png");
+    background-image: url("/images/eye.png");
 }
+
 .header {
     display: flex;
     justify-content: space-between;
     width: 98vw;
 }
+
 .random {
     font-family: "Rubik Spray Paint", system-ui;
     font-weight: 400;
@@ -46,6 +150,7 @@ body {
     opacity: 0.3;
     padding-top: 20px;
 }
+
 .logo {
     margin-left: 25px;
     padding-top: 20px;
@@ -56,17 +161,20 @@ body {
     font-size: 40px;
     opacity: 0.8;
 }
+
 .main {
     margin-top: 150px;
     display: flex;
     justify-content: space-around;
 }
+
 .info {
     width: 60%;
     margin-left: 25px;
     /* padding-top: 35px; */
-    
+
 }
+
 .faint {
     font-family: "Bytesized", sans-serif;
     font-weight: 400;
@@ -74,6 +182,7 @@ body {
     opacity: 0.6;
     padding-right: 45px;
 }
+
 .large {
     font-family: "Pixelify Sans", monospace;
     font-optical-sizing: auto;
@@ -84,6 +193,7 @@ body {
     opacity: 0.9;
     padding: 20px 0px;
 }
+
 .idk {
     font-family: "Pixelify Sans", system-ui;
     font-weight: 1000;
@@ -94,9 +204,11 @@ body {
     transform: rotate(180deg);
     text-align: right;
 }
+
 .opts {
     width: 36%;
 }
+
 .opt {
     font-family: "Micro 5", sans-serif;
     font-weight: 400;
@@ -104,6 +216,7 @@ body {
     font-size: 70px;
     opacity: 0.7;
 }
+
 .num {
     font-family: "Micro 5", sans-serif;
     font-weight: 400;
@@ -111,30 +224,37 @@ body {
     font-size: 70px;
     opacity: 0.4;
 }
-.arro, .arro2 {
+
+.arro,
+.arro2 {
     font-family: "Micro 5", sans-serif;
     font-weight: 400;
     font-style: normal;
     font-size: 50px;
     opacity: 0.7;
 }
+
 .arro2 {
     padding-left: 7px;
 }
+
 hr {
     opacity: 0.3;
     width: 80%;
 }
+
 .create {
     padding: 20px 0px;
     cursor: pointer;
     width: 80%;
     transition: background-color 1s ease, padding-left 0.5s ease;
 }
+
 .create:hover {
     background-color: rgba(128, 128, 128, 0.301);
     padding-left: 20px;
 }
+
 .footer {
     font-family: "Rubik Spray Paint", system-ui;
     position: absolute;

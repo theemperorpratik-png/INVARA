@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Bytesized&family=Micro+5&family=Pixelify+Sans:wght@400..700&family=Rubik+Spray+Paint&family=Sekuya&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oi&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    /* background-image: url("/images/background.png"); */
+    background-position: center;
+    background-size: cover;
+}
+
+body {
+    /* height: 100vh;
+    width: 100vh; */
+    font-family: Arial;
+    /* overflow: hidden; */
+    /* overflow-x: hidden; */
+    /* overflow-y: scroll; */
+
+}
+
+.bimg {
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.1;
+    z-index: 10;
+    pointer-events: none;
+    background-image: url("/images/background.png");
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+}
+
+.logo {
+    /* margin-left: 25px;
+    padding-top: 20px; */
+    font-family: "Pixelify Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 40px;
+    opacity: 0.8;
+}
+
+#ebutt {
+    height: 55px;
+    width: 220px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    font-family: "Bytesized", sans-serif;
+    font-size: 25px;
+    padding-right: 17px;
+    transition: background-color 0.3s ease, padding-right 0.3s ease;
+}
+
+#ebutt:hover {
+
+    background-color: gray;
+    color: black;
+    padding-right: 32px;
+}
+
+.hmm {
+    margin-left: 25px;
+    /* padding-top: 20px; */
+    font-family: "Pixelify Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 35px;
+    opacity: 0.8;
+}
+
+canvas {
+    background-color: rgb(205, 205, 205);
+    z-index: 100;
+    max-width: 100%;
+    height: auto;
+    /* margin-left: 25px; */
+}
+
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 25px;
+    gap: 20px;
+}
+
+select {
+    padding: 5px 10px;
+    border: 2px solid rgb(148, 148, 148);
+    background-color: gray;
+    font-family: "Micro 5", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 25px;
+    /* transition: padding-left 0.5s ease, background-color 0.5s esae; */
+}
+/* select option:hover {
+    background-color: rgba(128, 128, 128, 0.755);
+    padding-left: 5px;
+} */
+
+label {
+    
+    font-family: "Pixelify Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 25px;
+    opacity: 0.9;
+    padding: 10px;
+    /* text-align: left; */
+    /* color: rgb(48, 9, 56); */
+}
+
+.controls {
+    background-color: rgba(128, 128, 128, 0.44);
+    width: 400px;
+    height: 600px;
+}
+.title span {
+    font-family: "Rubik Spray Paint", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.title {
+    margin: 10px;
+    padding: 10px 0px;
+    font-size: 20px;
+    background-color: rgb(24, 24, 24);
+    text-align: center;
+}
+.sel {
+    margin: 10px;
+    padding: 10px 0px;
+    font-size: 20px;
+    background-color: rgb(24, 24, 24);
+    text-align: center;
+}
+#parameters {
+    margin: 10px;
+    padding: 10px;
+    background-color: rgb(41, 41, 41);
+}
+.pinfo{
+    margin: 10px;
+    padding: 10px 0px;
+    font-size: 20px;
+    background-color: rgb(24, 24, 24);
+    text-align: center;
+}
+.dVal, .sVal, .cVal {
+    font-family: "Micro 5", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 35px;
+    padding: 20px;
+}
+#seed {
+    padding: 10px;
+    border: 2px solid rgb(148, 148, 148);
+    background-color: gray;
+    font-family: "Micro 5", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 25px;
+    margin-left: 12px;
+    text-align: center;
+}
+#rButt {
+    padding: 10px;
+    border: 2px solid rgb(148, 148, 148);
+    background-color: black;
+    font-family: "Micro 5", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 22px;
+    margin-left: 12px;
+    width: 100px;
+    text-align: center;
+}
+#rButt:hover {
+    background-color: gray;
+}
+#rButt:active {
+    background-color: rgba(128, 128, 128, 0.711);
+}
+#genButt {
+    padding: 10px;
+    color: white;
+    border: 2px solid rgb(148, 148, 148);
+    background-color: black;
+    font-family: "Micro 5", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 22px;
+    margin-left: 12px;
+    width: 100px;
+    text-align: center;
+    margin-top: 3px;
+    width: 93%;
+}
+#genButt:hover {
+    background-color: gray;
+}
+#genButt:active {
+    background-color: rgba(128, 128, 128, 0.711);
+}

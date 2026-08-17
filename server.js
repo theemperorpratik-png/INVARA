@@ -14,3 +14,6 @@ app.get("/domain", (req,res)=>{
 app.listen(PORT, ()=>{
     console.log(`INVARA running at http://localhost:${PORT}`)
 })
+app.get("/create", (req,res)=>{
+    res.render("create")
+})
