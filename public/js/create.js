@@ -20,28 +20,59 @@ const complexity = document.getElementById("complexity")
 const scale = document.getElementById("scale")
 const seedVal = document.getElementById("seed")
 const rButt = document.getElementById("rButt")
+//random seed thrower
+function random(seed) {
+        let x = Math.sin(seed++) * 10000
+        return x - Math.floor(x)
+    }
 //for now ill do cosmos only
+//redoinf cosmos for the seed concept hahhhhhhhhh
 function cosmos() {
-    //extracting de values within the function cuz y not
-    const densityValue = Number(density.value)
-    const complexityValue = Number(complexity.value)
-    const scaleValue = Number(scale.value)
+    //extracting dem values
+    const densityVal = Number(density.value);
+    const complexityVal = Number(complexity.value)
+    const scaleVal = Number(scale.value)
     const seed = Number(seedVal.value)
-    //stoopid canva stuff 
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    ctx.clearRect(0, 0, canvas.clientWidth, canvas.height)
     ctx.fillStyle = "black"
-    ctx.fillRect(0, 0, canvas.width, canvas.height)
-    for(let i = 0; i < densityValue * 10; i++) {
-        const x = Math.random() * canvas.width
-        const y = Math.random() * canvas.height
-        const size = Math.random() * (scaleValue / 10) + 1
-        ctx.fillStyle =  `rgba(255,255,255,${Math.random()})`
+    ctx.fillRect(0, 0, canvas.clientWidth, canvas.height)
+    let currentSeed = seed
+    const star = densityVal * 10
+    for(let i = 0; i<star; i++) {
+        currentSeed++
+        const randomX = random(currentSeed)
+        currentSeed++
+        const randomY = random(currentSeed)
+        currentSeed++
+        const randomSize = random(currentSeed)
+        currentSeed++;
+        const randomOpacity = random(currentSeed);
+        // const x = randomX * canvas.width
+        // const y = randomY * canvas.height
+        //making use of the complexity
+        const ComplexityEff = complexityVal
+        const x = randomX * canvas.width + Math.sin(i * ComplexityEff) * 50
+        const y = randomY * canvas.height + Math.sin(i * ComplexityEff) * 50
+        const size = randomSize * (scaleVal/10) + 1
+        const opacity = randomOpacity * 0.8 + 0.2
+        // ctx.fillStyle = `rgba(255,255,255,${opacity})`
+        // lets add a bit of colors
+        const colorShift = Math.floor(randomOpacity * 100);
+        ctx.fillStyle = `rgba(${200 + colorShift}, ${220 + colorShift}, 255, ${opacity})`
         ctx.beginPath()
-        ctx.arc(x,y,size,0,Math.PI * 2)
+        ctx.arc(
+            x,
+            y,
+            size,
+            0,
+            Math.PI * 2
+        )
         ctx.fill()
+
     }
 }
 genButt.addEventListener("click", ()=>{
+    
     cosmos()
 })
 rButt.addEventListener("click", ()=>{
