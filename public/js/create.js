@@ -33,10 +33,14 @@ function cosmos() {
     const complexityVal = Number(complexity.value)
     const scaleVal = Number(scale.value)
     const seed = Number(seedVal.value)
-    ctx.clearRect(0, 0, canvas.clientWidth, canvas.height)
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
     ctx.fillStyle = "black"
-    ctx.fillRect(0, 0, canvas.clientWidth, canvas.height)
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
     let currentSeed = seed
+    //lezz make em actually starry
+    //this is for adding another dimension (specifying distance from the observer)
+    const centerX = canvas.width / 2
+    const centerY = canvas.height / 2
     const star = densityVal * 10
     for(let i = 0; i<star; i++) {
         currentSeed++
@@ -53,20 +57,69 @@ function cosmos() {
         const ComplexityEff = complexityVal
         const x = randomX * canvas.width + Math.sin(i * ComplexityEff) * 50
         const y = randomY * canvas.height + Math.sin(i * ComplexityEff) * 50
+        // const randomOffsetX = (randomX - 0.5) * canvas.width
+        // const randomOffsetY = (randomY - 0.5) * canvas.height
+        // const x = centerX + randomOffsetX * (1 - complexityVal / 120)
+        // const y = centerY + randomOffsetY * (1 - complexityVal / 120) things didnt go as planned
         const size = randomSize * (scaleVal/10) + 1
+        let finalSize = size
+        const points = 4
+        const innerSize = size * 0.25
         const opacity = randomOpacity * 0.8 + 0.2
         // ctx.fillStyle = `rgba(255,255,255,${opacity})`
         // lets add a bit of colors
-        const colorShift = Math.floor(randomOpacity * 100);
-        ctx.fillStyle = `rgba(${200 + colorShift}, ${220 + colorShift}, 255, ${opacity})`
+        // const colorShift = Math.floor(randomOpacity * 100);
+        // ctx.fillStyle = `rgba(${200 + colorShift}, ${220 + colorShift}, 255, ${opacity})`
+        // ctx.beginPath()
+        // ctx.arc(
+        //     x,
+        //     y,
+        //     size,
+        //     0,
+        //     Math.PI * 2
+        // )
+        // ctx.fill() keeping deez just in case i fuk up
+        // const gradient = ctx.createRadialGradient(
+        //     x,
+        //     y,
+        //     0,
+        //     x,
+        //     y,
+        //     size * 4
+        // )
+        // gradient.addColorStop(
+        //     0,
+        //     `rgba(255,255,255,${opacity})`
+        // )
+        // gradient.addColorStop(
+        // 1,
+        // "rgba(255,255,255,0)"
+        // )
+        // ctx.fillStyle = gradient
+        // ctx.beginPath()
+        // ctx.arc(
+        //     x,
+        //     y,
+        //     size * 4,
+        //     0,
+        //     Math.PI * 2
+        // )
+        // ctx.fill() ts was horrendus
+        ctx.fillStyle = `rgba(255,255,255,${opacity})`
         ctx.beginPath()
-        ctx.arc(
-            x,
-            y,
-            size,
-            0,
-            Math.PI * 2
-        )
+        for (let j = 0; j < points * 2; j++) {
+            const angle = (Math.PI * j) / points
+            const radius = j % 2 === 0 ? size : innerSize
+            const starX = x + Math.cos(angle) * radius
+            const starY = y + Math.sin(angle) * radius
+            if( j === 0) {
+                ctx.moveTo(starX, starY)
+            }
+            else {
+                ctx.lineTo(starX, starY)
+            }
+        }
+        ctx.closePath()
         ctx.fill()
 
     }
