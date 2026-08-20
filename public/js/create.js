@@ -1,7 +1,7 @@
-document.getElementById("ebutt").onclick=()=>{
+document.getElementById("ebutt").onclick = () => {
     document.body.classList.add("entering")
     setTimeout(() => {
-    window.location.href = "/domain"
+        window.location.href = "/domain"
     }, 1000)
 }
 // when coming back via browser back/forward, the page can get
@@ -20,11 +20,51 @@ const complexity = document.getElementById("complexity")
 const scale = document.getElementById("scale")
 const seedVal = document.getElementById("seed")
 const rButt = document.getElementById("rButt")
-//random seed thrower
+const sysSelect = document.getElementById("sysSelect")
+//seeded randomness
 function random(seed) {
-        let x = Math.sin(seed++) * 10000
-        return x - Math.floor(x)
+    let x = Math.sin(seed++) * 10000
+    return x - Math.floor(x)
+}
+
+sysSelect.addEventListener("change", (e) => {
+    const selVal = e.target.value
+    if (selVal === "cosmic") {
+        console.log("cosmos selected")
     }
+    else if (selVal === "fractal") {
+        console.log("fractal selected")
+        //now comes the main fractal function
+        function fractal() {
+            ctx.fillStyle = "black"
+            ctx.fillRect(0, 0, canvas.width, canvas.height)
+            ctx.strokeStyle = "red"
+            cX = canvas.width / 2
+            cY = canvas.height / 2
+            drawTree(cX, cY, 100, -Math.PI / 2, 10);
+
+        }
+        function drawTree(x,y,length,angle,branchWidth) {
+            if (length<10) {
+                return
+            }
+            ctx.beginPath()
+            ctx.moveTo(x,y)
+            const x2 = x + length * Math.cos(angle)
+            const y2 = y + length * Math.sin(angle)
+            ctx.lineTo(x2,y2)
+            ctx.stroke()
+            //two branches tiled oppositely
+            drawTree(x2, y2, length*0.75,angle+0.5,branchWidth*0.7)
+            drawTree(x2, y2, length*0.75,angle-0.5,branchWidth*0.7)
+        }
+        genButt.addEventListener("click", () => {
+
+            fractal()
+        })
+
+    }
+})
 //for now ill do cosmos only
 //redoinf cosmos for the seed concept hahhhhhhhhh
 function cosmos() {
@@ -53,81 +93,81 @@ function cosmos() {
     //lets add nebula cloud stuff
     const nebulaCount = Math.floor(complexityVal / 10) + 2
 
-for (let i = 0; i < nebulaCount; i++) {
-
-    currentSeed++
-    const nebulaX = random(currentSeed) * canvas.width
-
-    currentSeed++
-    const nebulaY = random(currentSeed) * canvas.height
-
-    currentSeed++
-    const nebulaSize = random(currentSeed) * (scaleVal * 3) + 100
-
-    currentSeed++
-    const colorIndex = Math.floor(random(currentSeed) * colors.length)
-
-    const color = colors[colorIndex]
-
-    const blobCount = 3 + Math.floor(complexityVal / 15)
-
-    for (let j = 0; j < blobCount; j++) {
+    for (let i = 0; i < nebulaCount; i++) {
 
         currentSeed++
-
-        const offsetX =
-            (random(currentSeed) - 0.5) * nebulaSize
+        const nebulaX = random(currentSeed) * canvas.width
 
         currentSeed++
-
-        const offsetY =
-            (random(currentSeed) - 0.5) * nebulaSize
+        const nebulaY = random(currentSeed) * canvas.height
 
         currentSeed++
+        const nebulaSize = random(currentSeed) * (scaleVal * 3) + 100
 
-        const blobSize =
-            nebulaSize * (0.4 + random(currentSeed) * 0.7)
+        currentSeed++
+        const colorIndex = Math.floor(random(currentSeed) * colors.length)
 
-        const gradient = ctx.createRadialGradient(
-            nebulaX + offsetX,
-            nebulaY + offsetY,
-            0,
-            nebulaX + offsetX,
-            nebulaY + offsetY,
-            blobSize
-        )
+        const color = colors[colorIndex]
 
-        gradient.addColorStop(
-            0,
-            `rgba(${color[0]},${color[1]},${color[2]},0.12)`
-        )
+        const blobCount = 3 + Math.floor(complexityVal / 15)
 
-        gradient.addColorStop(
-            0.5,
-            `rgba(${color[0]},${color[1]},${color[2]},0.04)`
-        )
+        for (let j = 0; j < blobCount; j++) {
 
-        gradient.addColorStop(
-            1,
-            "rgba(0,0,0,0)"
-        )
+            currentSeed++
 
-        ctx.fillStyle = gradient
+            const offsetX =
+                (random(currentSeed) - 0.5) * nebulaSize
 
-        ctx.beginPath()
+            currentSeed++
 
-        ctx.arc(
-            nebulaX + offsetX,
-            nebulaY + offsetY,
-            blobSize,
-            0,
-            Math.PI * 2
-        )
+            const offsetY =
+                (random(currentSeed) - 0.5) * nebulaSize
 
-        ctx.fill()
+            currentSeed++
+
+            const blobSize =
+                nebulaSize * (0.4 + random(currentSeed) * 0.7)
+
+            const gradient = ctx.createRadialGradient(
+                nebulaX + offsetX,
+                nebulaY + offsetY,
+                0,
+                nebulaX + offsetX,
+                nebulaY + offsetY,
+                blobSize
+            )
+
+            gradient.addColorStop(
+                0,
+                `rgba(${color[0]},${color[1]},${color[2]},0.12)`
+            )
+
+            gradient.addColorStop(
+                0.5,
+                `rgba(${color[0]},${color[1]},${color[2]},0.04)`
+            )
+
+            gradient.addColorStop(
+                1,
+                "rgba(0,0,0,0)"
+            )
+
+            ctx.fillStyle = gradient
+
+            ctx.beginPath()
+
+            ctx.arc(
+                nebulaX + offsetX,
+                nebulaY + offsetY,
+                blobSize,
+                0,
+                Math.PI * 2
+            )
+
+            ctx.fill()
+        }
     }
-}
-    for(let i = 0; i<star; i++) {
+    for (let i = 0; i < star; i++) {
         currentSeed++
         const randomX = random(currentSeed)
         currentSeed++
@@ -137,7 +177,7 @@ for (let i = 0; i < nebulaCount; i++) {
         currentSeed++;
         const randomOpacity = random(currentSeed);
         currentSeed++
-        const colorIndex = Math.floor( 
+        const colorIndex = Math.floor(
             random(currentSeed) * colors.length
         )
         const color = colors[colorIndex]
@@ -152,11 +192,11 @@ for (let i = 0; i < nebulaCount; i++) {
         // const x = centerX + randomOffsetX * (1 - complexityVal / 120)
         // const y = centerY + randomOffsetY * (1 - complexityVal / 120) things didnt go as planned
         const size =
-        Math.pow(randomSize, 2) *
-        (scaleVal / 3) +
-        0.5
+            Math.pow(randomSize, 2) *
+            (scaleVal / 3) +
+            0.5
         let finalSize = size
-        const points = 4 + Math.floor(complexityVal/20)
+        const points = 4 + Math.floor(complexityVal / 20)
         const innerSize = size * 0.25
         const opacity = randomOpacity * 0.8 + 0.2
         // ctx.fillStyle = `rgba(255,255,255,${opacity})`
@@ -203,14 +243,14 @@ for (let i = 0; i < nebulaCount; i++) {
         // continue
         // }
         ctx.fillStyle =
-        `rgba(${color[0]},${color[1]},${color[2]},${opacity})`
+            `rgba(${color[0]},${color[1]},${color[2]},${opacity})`
         ctx.beginPath()
         for (let j = 0; j < points * 2; j++) {
             const angle = (Math.PI * j) / points
             const radius = j % 2 === 0 ? size : finalSize * 0.25
             const starX = x + Math.cos(angle) * radius
             const starY = y + Math.sin(angle) * radius
-            if( j === 0) {
+            if (j === 0) {
                 ctx.moveTo(starX, starY)
             }
             else {
@@ -222,48 +262,8 @@ for (let i = 0; i < nebulaCount; i++) {
 
     }
 }
-//now comes the main fractal function
-function fractal() {
-    ctx.fillStyle = "red"
-    ctx.fillRect(0, 0, canvas.width, canvas.height)
-    ctx.strokeStyle = "white"
-    centerX = canvas.width/2
-    centerY = canvas.height/2
-    branch(
-    canvas.width / 2,
-    canvas.height,
-    150,
-    -Math.PI / 2,
-    Math.floor(Number(complexity.value)/10)
-)
 
-}
-function branch(x, y, length, angle, depth) {
-
-    if (depth <= 0) {
-        return
-    }
-
-    // calculate where this branch ends
-    const endX = x + Math.cos(angle) * length
-    const endY = y + Math.sin(angle) * length
-
-    // draw branch
-    ctx.beginPath()
-    ctx.moveTo(x, y)
-    ctx.lineTo(endX, endY)
-    ctx.stroke()
-
-    // create smaller branches
-        branch(endX, endY, length * 0.7, angle - 0.5, depth - 1)
-        branch(endX, endY, length * 0.7, angle + 0.5, depth - 1)
-    
-}
-genButt.addEventListener("click", ()=>{
-    
-    fractal()
-})
-rButt.addEventListener("click", ()=>{
+rButt.addEventListener("click", () => {
     const newSeed = Math.floor(Math.random() * 999999)
     seedVal.value = newSeed
 })
