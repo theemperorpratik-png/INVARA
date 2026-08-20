@@ -227,7 +227,7 @@ label {
 }
 
 .controls {
-    background-color: rgba(128, 128, 128, 0.44);
+    /* background-color: rgba(128, 128, 128, 0.44); */
     width: 400px;
     height: 600px;
 }
@@ -340,4 +340,7 @@ label {
 }
 #genButt:active {
     background-color: rgba(128, 128, 128, 0.711);
+}
+#cosmoh {
+    display: none;
 }
