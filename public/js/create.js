@@ -114,10 +114,24 @@ genButt.addEventListener("click", () => {
             const WIDTH = canvas.width
             // const REAL_SET = { start: -2, end: 1 }
             // const IMAGINARY_SET = { start: -1, end: 1 } modified acc to params
+            function colorGenThrughSeed() {
+                const seed = Number(seedVal.value)
+                const base = Math.floor(random(seed) * 360)
+                const colors = ["#000000"]
+                for (let i = 1; i < 8; i++) {
+                    const firstMap = base + i * 8
+                    const saturation =70 + Math.floor(random(seed + i) * 20)
+                    const lightness = 25 + i * 8
+                    colors.push(
+                        `hsl(${firstMap}, ${saturation}%, ${lightness}%)`
+                    )
+                }
 
-            const colors = new Array(16).fill(0).map((_, i) => i === 0 ? '#000' : `#${((1 << 24) * Math.random() | 0).toString(16)}`)
+                return colors
+            }
 
             function draw() {
+                const colors = colorGenThrughSeed()
                 let maxIt = Number(it.value)
                 const zoomLvl = Number(zoom.value)
                 const ceX = Number(xPos.value)
@@ -162,7 +176,7 @@ genButt.addEventListener("click", () => {
             drawTree(x2, y2, length * 0.75, angle - angChange, branchWidth * 0.7)
         }
 
-    
+
         fractal()
     }
 
