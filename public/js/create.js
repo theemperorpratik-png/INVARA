@@ -20,6 +20,30 @@ const scale = document.getElementById("scale")
 const seedVal = document.getElementById("seed")
 const rButt = document.getElementById("rButt")
 const sysSelect = document.getElementById("sysSelect")
+const it = document.getElementById("it")
+const zoom = document.getElementById("zoom")
+const xPos = document.getElementById("xPos")
+const yPos = document.getElementById("yPos")
+
+const itVal = document.getElementById("itVal")
+const zoomVal = document.getElementById("zoomVal")
+const xVal = document.getElementById("xVal")
+const yVal = document.getElementById("yVal")
+it.addEventListener("input", (e) => {
+    itVal.textContent = e.target.value
+})
+
+zoom.addEventListener("input", (e) => {
+    zoomVal.textContent = e.target.value
+})
+
+xPos.addEventListener("input", (e) => {
+    xVal.textContent = e.target.value
+})
+
+yPos.addEventListener("input", (e) => {
+    yVal.textContent = e.target.value
+})
 function random(seed) {
     let x = Math.sin(seed++) * 10000
     return x - Math.floor(x)
@@ -30,6 +54,11 @@ sysSelect.addEventListener("change", (e) => {
         console.log("cosmos selected")
     }
     else if (selVal === "fractal") {
+    }
+})
+genButt.addEventListener("click", () => {
+
+    if (sysSelect.value === "fractal") {
         document.getElementById("angle").addEventListener("input", (e) => {
             document.getElementById("angleVal").textContent = e.target.value
         })
@@ -53,18 +82,19 @@ sysSelect.addEventListener("change", (e) => {
             ctx.strokeStyle = findCol()
             cX = canvas.width / 2
             cY = canvas.height / 2
-            
-            if(document.getElementById("fracType").value=="fracTree") {
+
+            if (document.getElementById("fracType").value == "fracTree") {
                 drawTree(cX, canvas.height - 50, 130, -Math.PI / 2, 10);
-            }else if(document.getElementById("fracType").value=="set") {
+            } else if (document.getElementById("fracType").value == "set") {
                 draw()
             }
 
         }
         {
-            //code from:https://dev.to/foqc/mandelbrot-set-in-js-480o cuz it was too complex to understand and make on my own in a reasonable time i did modify it accourding to my way 
-            const MAX_ITERATION = 80
+            //code from:https://dev.to/foqc/mandelbrot-set-in-js-480o cuz it involved complex concepts to make on my own in a reasonable time(especially since a lot of time was already wasted in cosmos) but i modified the code according to my liking and made compatible to a few parameters
+
             function mandelbrot(c) {
+                const maxIt = Number(it.value)
                 let z = { x: 0, y: 0 }, n = 0, p, d;
                 do {
                     p = {
@@ -77,22 +107,35 @@ sysSelect.addEventListener("change", (e) => {
                     }
                     d = Math.sqrt(Math.pow(z.x, 2) + Math.pow(z.y, 2))
                     n += 1
-                } while (d <= 2 && n < MAX_ITERATION)
+                } while (d <= 2 && n < maxIt)
                 return [n, d <= 2]
             }
             const HEIGHT = canvas.height
             const WIDTH = canvas.width
-            const REAL_SET = { start: -2, end: 1 }
-            const IMAGINARY_SET = { start: -1, end: 1 }
+            // const REAL_SET = { start: -2, end: 1 }
+            // const IMAGINARY_SET = { start: -1, end: 1 } modified acc to params
 
             const colors = new Array(16).fill(0).map((_, i) => i === 0 ? '#000' : `#${((1 << 24) * Math.random() | 0).toString(16)}`)
 
             function draw() {
+                let maxIt = Number(it.value)
+                const zoomLvl = Number(zoom.value)
+                const ceX = Number(xPos.value)
+                const ceY = Number(yPos.value)
+                const realR = 3 / zoomLvl
+                const imaginaryR = 2 / zoomLvl
+                const realst = ceX - realR / 2
+                const realEnd = ceX + realR / 2
+                const imaginarySt = ceY - imaginaryR / 2
+                const imaginaryEnd = ceY + imaginaryR / 2
                 for (let i = 0; i < WIDTH; i++) {
                     for (let j = 0; j < HEIGHT; j++) {
-                        complex = {
-                            x: REAL_SET.start + (i / WIDTH) * (REAL_SET.end - REAL_SET.start),
-                            y: IMAGINARY_SET.start + (j / HEIGHT) * (IMAGINARY_SET.end - IMAGINARY_SET.start)
+                        const complex = {
+                            x: realst + (i / WIDTH) *
+                                (realEnd - realst),
+
+                            y: imaginarySt + (j / HEIGHT) *
+                                (imaginaryEnd - imaginarySt)
                         }
 
                         const [m, isMandelbrotSet] = mandelbrot(complex)
@@ -118,12 +161,11 @@ sysSelect.addEventListener("change", (e) => {
             drawTree(x2, y2, length * 0.75, angle + angChange, branchWidth * 0.7)
             drawTree(x2, y2, length * 0.75, angle - angChange, branchWidth * 0.7)
         }
-        genButt.addEventListener("click", () => {
 
-            fractal()
-        })
-
+    
+        fractal()
     }
+
 })
 rButt.addEventListener("click", () => {
     const newSeed = Math.floor(Math.random() * 999999)

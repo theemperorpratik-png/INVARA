@@ -243,6 +243,7 @@ label {
     background-color: rgb(24, 24, 24);
     text-align: center;
 }
+
 .sel {
     margin: 10px;
     padding: 10px 0px;
@@ -342,5 +343,8 @@ label {
     background-color: rgba(128, 128, 128, 0.711);
 }
 #cosmoh {
+    display: none;
+}
+.tree {
     display: none;
 }
