@@ -91,6 +91,7 @@
                                     <select name="fracType" id="fracType">
                                         <option value="fracTree">FRACTAL TREE</option>
                                         <option value="set">MANDELBROT SET</option>
+                                        <option value="koch">KOCH SNOWFLAKE</option>
                                     </select>
                                 </div>
                             </div>
@@ -113,8 +114,8 @@
                                 <div class="ugh">
                                     <label for="col">SELECT COLOR</label>
                                     <select name="col" id="col">
-                                        <option value="blue">BLUE</option>
                                         <option value="white">WHITE</option>
+                                        <option value="blue">BLUE</option>
                                         <option value="black">BLACK</option>
                                         <option value="RED">RED</option>
                                     </select>
@@ -146,7 +147,7 @@
 
                                 </div>
                                 <input type="range" id="it" min="10" max="200" value="80">
-                                <span class="cVal" id="itVal">1</span>
+                                <span class="cVal" id="itVal">80</span>
 
                             </div>
                             <div class="pinfo">
@@ -164,7 +165,7 @@
 
                                 </div>
                                 <input type="range" id="xPos" min="-2" max="1" value="-0.5" step="0.01">
-                                <span class="cVal" id="xVal">1</span>
+                                <span class="cVal" id="xVal">-0.5</span>
 
                             </div>
                             <div class="pinfo">
@@ -173,7 +174,7 @@
 
                                 </div>
                                 <input type="range" id="yPos" min="-1.5" max="1.5" value="0" step="0.01">
-                                <span class="cVal" id="yVal">1</span>
+                                <span class="cVal" id="yVal">0</span>
 
                             </div>
                         </div>

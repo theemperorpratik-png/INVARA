@@ -345,6 +345,9 @@ label {
 #cosmoh {
     display: none;
 }
-.tree {
+/* .tree {
+    display: none;
+} */
+.set {
     display: none;
 }

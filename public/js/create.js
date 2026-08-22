@@ -56,6 +56,20 @@ sysSelect.addEventListener("change", (e) => {
     else if (selVal === "fractal") {
     }
 })
+document.getElementById("fracType").addEventListener("change",(e)=>{
+    
+    if(e.target.value == "fracTree"){
+        document.querySelector(".set").style.display = "none"
+        document.querySelector(".tree").style.display = "block"
+    } else if(e.target.value == "set") {
+        document.querySelector(".set").style.display = "block"
+        document.querySelector(".tree").style.display = "none"
+    } else if(e.target.value == "koch") {
+        document.querySelector(".set").style.display = "none"
+        document.querySelector(".tree").style.display = "none"
+    }
+})
+
 genButt.addEventListener("click", () => {
 
     if (sysSelect.value === "fractal") {
@@ -78,6 +92,7 @@ genButt.addEventListener("click", () => {
                 return background.value
             }
             ctx.fillStyle = findBack()
+            // ctx.fillStyle = "white"
             ctx.fillRect(0, 0, canvas.width, canvas.height)
             ctx.strokeStyle = findCol()
             cX = canvas.width / 2
@@ -87,6 +102,34 @@ genButt.addEventListener("click", () => {
                 drawTree(cX, canvas.height - 50, 130, -Math.PI / 2, 10);
             } else if (document.getElementById("fracType").value == "set") {
                 draw()
+            } else if (document.getElementById("fracType").value == "koch") {
+            ctx.fillStyle = "black"
+            ctx.fillRect(0, 0, canvas.width, canvas.height)
+                function flake(x1,y1,x5,y5,depth) {
+                    if(depth===0) {
+                        ctx.lineTo(x5, y5);
+                        return
+
+                    }
+                    const x2 = x1 + (x5 - x1) / 3
+                    const y2 = y1 + (y5 - y1) / 3
+                    const x4 = x1 + ((x5-x1)*2)/3
+                    const y4 = y1 + ((y5-y1)*2)/3
+                    const x3 = x2 + (x4-x2)*0.5 - (y4 -y2)* Math.sin(-Math.PI/3)
+                    const y3 = y2 + (x4-x2)* Math.sin(-Math.PI/3) + (y4 -y2)*0.5
+                    flake(x1, y1, x2, y2, depth - 1);
+                    flake(x2, y2, x3, y3, depth - 1);
+                    flake(x3, y3, x4, y4, depth - 1);
+                    flake(x4, y4, x5, y5, depth - 1);
+                }
+                // ctx.fillStyle = "white"
+                ctx.beginPath();
+                ctx.moveTo(300, 100); 
+                flake(300, 100, 500, 450, 8); 
+                flake(500, 450, 100, 450, 8); 
+                flake(100, 450, 300, 100, 8); 
+                ctx.stroke();
+                
             }
 
         }
@@ -131,6 +174,7 @@ genButt.addEventListener("click", () => {
             }
 
             function draw() {
+                
                 const colors = colorGenThrughSeed()
                 let maxIt = Number(it.value)
                 const zoomLvl = Number(zoom.value)
@@ -160,6 +204,7 @@ genButt.addEventListener("click", () => {
             }
         }
         function drawTree(x, y, length, angle, branchWidth) {
+            ctx.lineWidth = branchWidth
             const complex = 5.5 - document.getElementById("complex").value / 20
             if (length < complex) {
                 return
@@ -172,8 +217,8 @@ genButt.addEventListener("click", () => {
             const y2 = y + length * Math.sin(angle)
             ctx.lineTo(x2, y2)
             ctx.stroke()
-            drawTree(x2, y2, length * 0.75, angle + angChange, branchWidth * 0.7)
-            drawTree(x2, y2, length * 0.75, angle - angChange, branchWidth * 0.7)
+            drawTree(x2, y2, length * 0.75, angle + angChange, branchWidth * 0.75)
+            drawTree(x2, y2, length * 0.75, angle - angChange, branchWidth * 0.75)
         }
 
 
